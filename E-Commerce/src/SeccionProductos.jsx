@@ -6,10 +6,6 @@ import { Link } from "react-router-dom";
 const SeccionProductos = ({agregarAlCarrito, setProductos}) => {
   const [productosLocales, setProductosLocales] = useState([]);
   const [cargando, setCargando] = useState(true);
-    /*
-    Hacer Función para agregar un producto al carrito.
-    spread (...carrito)
-    */ 
 
   useEffect(() => {
     fetch("https://681e5159c1c291fa6633c1ac.mockapi.io/api/v1/productos/productos")
@@ -27,29 +23,28 @@ const SeccionProductos = ({agregarAlCarrito, setProductos}) => {
 
   if (cargando) {
     return (
-      <div className="flex justify-center items-center h-60">
-        <ClipLoader size={50} color="#4F46E5" />
+      <div>
+        <ClipLoader size={100} color="#4F46E5" />
       </div>
     );
   }
 
   return (
-    <section className="p-4 bg-gray-100">
-      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Nuestros Productos</h2>
+    <section>
+      <h2>Nuestros Productos</h2>
       {productosLocales.length === 0 ? (
-        <p className="text-center text-gray-500">No hay productos disponibles.</p>
+        <p>No hay productos disponibles.</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div>
           {productosLocales.map((producto) => (
-            <div key={producto.id} className="bg-white shadow rounded-lg p-4 hover:shadow-lg transition">
+            <div key={producto.id}>
               <img
                 src={producto.imagen}
                 alt={producto.nombre}
-                className="w-full h-40 object-cover rounded"
               />
-              <h3 className="mt-2 text-lg font-semibold text-gray-700">{producto.nombre}</h3>
-              <p className="text-indigo-600 font-bold">${producto.precio}</p>
-              <button className="mt-3 w-full bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700 transition"
+              <h3>{producto.nombre}</h3>
+              <p>${producto.precio}</p>
+              <button
               onClick={() => agregarAlCarrito(producto)}
               >
                 Agregar al carrito

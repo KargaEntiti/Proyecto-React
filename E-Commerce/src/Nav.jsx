@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Nav = () => {
   return (
-        <nav className="flex gap-4 p-4 bg-indigo-600 text-white">
+        <nav>
       <div className="flex">
         <p>
           <Link to="/">Inicio</Link></p>

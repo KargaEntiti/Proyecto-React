@@ -1,4 +1,3 @@
-// src/Clase_6/RutaPrivada.jsx
 import { Navigate } from "react-router-dom";
 
 export default function RutaPrivada({ children, estaAutenticado }) {
