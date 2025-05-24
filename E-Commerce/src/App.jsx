@@ -1,41 +1,36 @@
-import { useState } from 'react'
+import { useState , useEffect } from 'react'
 import './App.css'
-import ListaDeProductos from "./Clase_2/ListaDeProductos";
-import Tarjeta from './Clase_2/Tarjeta';
-import Boton from './Clase_2/Boton';
-import TarjetaProyecto from './Clase_3/TarjetaProyecto';
-import GaleriaIntereses from './Clase_3/GaleriaIntereses';
-import ListarProductos from './Clase_4/ListarProductos'
-import Carrito from './Clase_4/Carrito';
-import Layout from './Clase_4/Layout';
-import Productos from './Clase_4/Productos';
-import SeccionProductos from './Clase_4/SeccionProductos';
-import { Routes, Route } from 'react-router-dom';
-import About from "./Clase_5/About"
-import Contact from "./Clase_5/Contact"
-import Rutas from './Clase_5/Rutas';
-import { productos } from './Clase_6/productosDB';
+import Rutas from './Rutas';
 
 
 function App() {
 
   const [carrito, setCarrito] = useState([]);
 
+  const [productos,setProductos] =useState([]);
   const [estaAutenticado, setEstaAutenticado] = useState (false)
 
   const agregarAlCarrito = (producto) => {
     setCarrito([...carrito, producto]);
   };
 
-  const [mensaje, setMensaje] = useState("");
+  const [cargando, setCargando] = useState(true);
 
+    useEffect(() => {
+    fetch("https://681e5159c1c291fa6633c1ac.mockapi.io/api/v1/productos/productos")
+      .then((res) => res.json())
+      .then((data) => {
+        setProductos(data);
+        setCargando(false);
+      })
+      .catch((err) => {
+        console.error("Error al obtener productos:", err);
+        setCargando(false);
+      });
+  }, []);
 
-  const manejarGuardar = () => alert("Guardado correctamente");
-  const manejarCancelar = () => alert("Cancelado");
-  const manejarEliminar = () => alert("Elemento eliminado");
-
-
-  console.log ("Esta autenticado:",estaAutenticado)
+  if (cargando) return <p>Cargando productos...</p>;
+  
   return (
     <div>
         <Rutas
