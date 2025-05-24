@@ -8,10 +8,11 @@ import DetalleProducto from './DetalleProducto'
 import RutaPrivada from './RutaPrivada'
 import AdminPanel from "./AdminPanel";
 import Login from './Login'
+import NotFound from "./NotFound"
 
 
 
-export default function Rutas({ carrito, setCarrito, agregarAlCarrito, productos, estaAutenticado, setEstaAutenticado }) {
+export default function Rutas({ carrito, setCarrito, agregarAlCarrito, productos, estaAutenticado, setEstaAutenticado, setProductos }) {
 
   return (
 
@@ -19,7 +20,7 @@ export default function Rutas({ carrito, setCarrito, agregarAlCarrito, productos
         <Route path="/" element={<Layout />}>
           <Route
             index
-            element={<SeccionProductos agregarAlCarrito={agregarAlCarrito}/>}
+            element={<SeccionProductos agregarAlCarrito={agregarAlCarrito} setProductos={setProductos}/>}
           >
           </Route>
           
@@ -48,6 +49,7 @@ export default function Rutas({ carrito, setCarrito, agregarAlCarrito, productos
             path='/login' 
             element={<Login setEstaAutenticado={setEstaAutenticado} />}>
           </Route>
+          <Route path='*' element={<NotFound/>}></Route>
       </Routes>
   )
 }

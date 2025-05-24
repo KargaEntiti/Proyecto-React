@@ -3,8 +3,8 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { Link } from "react-router-dom";
 
 
-const SeccionProductos = ({agregarAlCarrito}) => {
-  const [productos, setProductos] = useState([]);
+const SeccionProductos = ({agregarAlCarrito, setProductos}) => {
+  const [productosLocales, setProductosLocales] = useState([]);
   const [cargando, setCargando] = useState(true);
     /*
     Hacer Función para agregar un producto al carrito.
@@ -15,6 +15,7 @@ const SeccionProductos = ({agregarAlCarrito}) => {
     fetch("https://681e5159c1c291fa6633c1ac.mockapi.io/api/v1/productos/productos")
       .then((res) => res.json())
       .then((data) => {
+        setProductosLocales(data);
         setProductos(data);
         setCargando(false);
       })
@@ -35,11 +36,11 @@ const SeccionProductos = ({agregarAlCarrito}) => {
   return (
     <section className="p-4 bg-gray-100">
       <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Nuestros Productos</h2>
-      {productos.length === 0 ? (
+      {productosLocales.length === 0 ? (
         <p className="text-center text-gray-500">No hay productos disponibles.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {productos.map((producto) => (
+          {productosLocales.map((producto) => (
             <div key={producto.id} className="bg-white shadow rounded-lg p-4 hover:shadow-lg transition">
               <img
                 src={producto.imagen}
