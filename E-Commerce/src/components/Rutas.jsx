@@ -1,14 +1,14 @@
 import { Routes, Route } from 'react-router-dom'
 import Layout from './Layout'
-import SeccionProductos from './SeccionProductos'
-import About from './About'
-import Contact from './Contact'
+import SeccionProductos from '../pages/SeccionProductos'
+import About from '../pages/About'
+import Contact from '../pages/Contact'
 import Carrito from './Carrito'
 import DetalleProducto from './DetalleProducto'
-import RutaPrivada from './RutaPrivada'
-import AdminPanel from "./AdminPanel";
+import RutaPrivada from '../auth/RutaPrivada'
+import AdminPanel from "../pages/AdminPanel";
 import Login from './Login'
-import NotFound from "./NotFound"
+import NotFound from "../pages/NotFound"
 
 
 

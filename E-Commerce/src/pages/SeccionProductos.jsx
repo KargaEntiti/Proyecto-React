@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Link } from "react-router-dom";
-import "./style/SeccionProductos.css"
+import "../style/SeccionProductos.css"
 
 
 const SeccionProductos = ({agregarAlCarrito, setProductos}) => {
