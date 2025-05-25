@@ -22,3 +22,25 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Ignora node_modules (carpeta de dependencias)
+node_modules/
+
+# Ignora los archivos de build
+dist/
+build/
+
+# Ignora archivos de entorno
+.env
+
+# Ignora logs
+*.log
+
+# Ignora configuración de IDEs (Visual Studio Code, JetBrains, etc.)
+.vscode/
+.idea/
+
+# Ignora imágenes
+*.png
+*.jpg
+*.jpeg
