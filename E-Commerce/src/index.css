@@ -1,0 +1,26 @@
+.boton {
+  flex: 1;
+  padding: 8px;
+  margin: 2px;
+  border: 2px solid #4f46e5;
+  border-radius: 4px;
+  color: #4f46e5;
+  background-color: white;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none; /* para <Link> */
+}
+
+.boton:hover {
+  background-color: #4f46e5;
+  color: white;
+}
+.enlace-boton {
+  text-decoration: none;
+  display: inline-block;
+}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Link } from "react-router-dom";
+import "./style/SeccionProductos.css"
 
 
 const SeccionProductos = ({agregarAlCarrito, setProductos}) => {
@@ -35,21 +36,26 @@ const SeccionProductos = ({agregarAlCarrito, setProductos}) => {
       {productosLocales.length === 0 ? (
         <p>No hay productos disponibles.</p>
       ) : (
-        <div>
+        <div className="producto-grid">
           {productosLocales.map((producto) => (
-            <div key={producto.id}>
+            <div className="producto-tarjetas" key={producto.id}>
               <img
                 src={producto.imagen}
                 alt={producto.nombre}
+                className="producto-imagen"
               />
-              <h3>{producto.nombre}</h3>
-              <p>${producto.precio}</p>
-              <button
-              onClick={() => agregarAlCarrito(producto)}
-              >
-                Agregar al carrito
-              </button>
-              <Link to={`/productos/${producto.id}`}> Ver Más</Link>
+              <div className="producto-info">
+                <h3 className="producto-nombre">{producto.nombre}</h3>
+                <p className="producto-precio">${producto.precio}</p>
+                <div className="producto-boton">
+                <button className="boton "
+                onClick={() => agregarAlCarrito(producto)}
+                >
+                  Agregar al carrito
+                </button>
+                <Link className="boton enlace-boton" to={`/productos/${producto.id}`}>Ver Más</Link>
+                </div>
+              </div>
             </div>
           ))}
         </div>

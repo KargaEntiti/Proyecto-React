@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 
 function Layout({ children }) {
   return (
-    <div>
+    <div className="app-container">
       <Header />
       <Nav />
       <main>

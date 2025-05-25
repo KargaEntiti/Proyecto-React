@@ -1,6 +1,6 @@
 import { useState , useEffect } from 'react'
 import './App.css'
-import Rutas from './Rutas';
+import Rutas from './components/Rutas';
 
 function App() {
 
