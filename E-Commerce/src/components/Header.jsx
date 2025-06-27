@@ -7,6 +7,7 @@ function Header() {
           Mi Tienda Online
         </h1>
       </div>
+      
     </header>
   );
 }

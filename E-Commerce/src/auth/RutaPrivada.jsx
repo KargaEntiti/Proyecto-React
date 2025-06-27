@@ -1,11 +1,9 @@
 import { Navigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
-export default function RutaPrivada({ children, estaAutenticado }) {
-  console.log (estaAutenticado)
-  if (!estaAutenticado) {
-    console.log("paso por rutas privada")
-    return <Navigate to="/login" replace />;
-  }
-
-  return children;
+function RutaPrivada({ children }) {
+  const { estaAutenticado } = useAuth();
+  return estaAutenticado ? children : <Navigate to="/login" />;
 }
+
+export default RutaPrivada;

@@ -1,4 +1,6 @@
+import React from "react";
 import { useState } from "react";
+import { Helmet } from 'react-helmet';
 
 //El hook useState se usa en React para crear y manejar estados en componentes funcionales.
 
@@ -17,7 +19,12 @@ function Carrito({carrito,setCarrito}) {
     }
     
     return (
+        
         <div>
+            <Helmet>
+                <title>Carrito</title>
+                <meta name="description" content="Explora los productos para comprar"/>
+            </Helmet>
             <h2>🛒 Carrito</h2>
             <button
             onClick={toggleCarrito}

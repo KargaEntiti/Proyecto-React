@@ -3,12 +3,15 @@ import Layout from './Layout'
 import SeccionProductos from '../pages/SeccionProductos'
 import About from '../pages/About'
 import Contact from '../pages/Contact'
-import Carrito from './Carrito'
+import Carrito from '../pages/Carrito'
 import DetalleProducto from './DetalleProducto'
 import RutaPrivada from '../auth/RutaPrivada'
 import AdminPanel from "../pages/AdminPanel";
-import Login from './Login'
+import Login from '../pages/Login'
 import NotFound from "../pages/NotFound"
+import FormularioProducto from '../pages/FormularioProducto'
+import ListaProductos from '../pages/ListaProductos'
+import Perfil from '../pages/Perfil'
 
 
 
@@ -28,11 +31,18 @@ export default function Rutas({ carrito, setCarrito, agregarAlCarrito, productos
             path='/carrito' 
             element={
             <RutaPrivada estaAutenticado={estaAutenticado}>
-            <Carrito carrito={carrito} setCarrito={setCarrito}/>
+            <Carrito estaAutenticado={estaAutenticado}/>
             </RutaPrivada>
             }
           />
-          
+          <Route
+            path='/NuevoProducto' element={
+              <RutaPrivada estaAutenticado={estaAutenticado}>
+              <FormularioProducto />
+              </RutaPrivada>
+              }
+              
+          />
           <Route
             path="/admin"
             element={
@@ -41,12 +51,22 @@ export default function Rutas({ carrito, setCarrito, agregarAlCarrito, productos
             </RutaPrivada>
             }
           />
+          <Route path="/perfil" element={
+            <RutaPrivada>
+              <Perfil />
+            </RutaPrivada>
+          }/>
+          <Route path="/productos" element={
+            <RutaPrivada estaAutenticado={estaAutenticado}>
+            <ListaProductos />
+            </RutaPrivada>
+            } />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
           <Route path="productos/:id" element={<DetalleProducto productos={productos}/>} /> {/** los dos puntos indica que va a ser una variable */}
           </Route>
           <Route
-            path='/login' 
+            path='/Login' 
             element={<Login setEstaAutenticado={setEstaAutenticado} />}>
           </Route>
           <Route path='*' element={<NotFound/>}></Route>

@@ -1,3 +1,4 @@
+// src/Clase_5/DetalleProducto.jsx
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
@@ -9,11 +10,13 @@ export default function DetalleProducto({productos}) {
 
   return (
     <div>
-      <h2>Nombre: {producto.nombre}</h2>
-      <p>Descripcion: {producto.descripcion}</p>
+      <h2>{producto.nombre}</h2>
+      <p>{producto.descripcion}</p>
       <p>Precio: ${producto.precio}</p>
 
-      <Link className='boton' to={`/`}> Volver</Link>
+      <button>
+      <Link to={`/`}> Volver</Link>
+        </button>
     </div>
   );
 }
