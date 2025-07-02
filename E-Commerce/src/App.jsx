@@ -1,8 +1,9 @@
 import { useState , useEffect } from 'react'
-import './App.css'
+import './style/App.css'
 import Rutas from './components/Rutas';
 import { Helmet } from 'react-helmet';
 import { toast } from "react-toastify";
+import Sidebar from "./components/Sidebar";
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
         <title>Inicio</title>
         <meta name='Inicio' content='Productos del E-Commerce'/>
         </Helmet>
+        <Sidebar />
         <Rutas
         carrito={carrito}
         setCarrito={setCarrito}

@@ -12,9 +12,7 @@ const Carrito = () => {
     eliminarProducto,
   } = useCarrito();
 
-  const [mostrarCarrito, setMostrarCarrito] = useState(true);
-
-  const toggleCarrito = () => setMostrarCarrito(!mostrarCarrito);
+  const [mostrarCarrito] = useState(true);
 
   const totalGeneral = carrito.reduce(
     (acc, item) => acc + item.precio * item.cantidad,
@@ -29,10 +27,6 @@ const Carrito = () => {
 
       <h2>🛒 Carrito</h2>
 
-      <button className="boton" onClick={toggleCarrito}>
-        {mostrarCarrito ? "Ocultar Carrito" : "Ver Carrito"}
-      </button>
-
       {mostrarCarrito && (
         <div>
           {carrito.length === 0 ? (
@@ -43,12 +37,26 @@ const Carrito = () => {
                 <div key={item.nombre} style={{ marginBottom: "10px" }}>
                   <strong>{item.nombre}</strong> - ${item.precio} × {item.cantidad} = $
                   {(item.precio * item.cantidad).toFixed(2)}
-                  <button onClick={() => agregarAlCarrito(item)} style={{ marginLeft: "10px" }}>
+                  <button onClick={() => {
+                    agregarAlCarrito(item);
+                    toast.success("Producto agregado")
+                  }  
+                  } style={{ marginLeft: "10px" }}>
                     +
                   </button>
-                  <button onClick={() => disminuirCantidad(item.nombre)}>-</button>
+                  <button onClick={() => 
+                  {
+                    disminuirCantidad(item.nombre);
+                    toast.success("Producto eliminado")
+                  }
+
+                  }>-</button>
                   <button
-                    onClick={() => eliminarProducto(item.nombre)}
+                    onClick={() => {
+                      eliminarProducto(item.nombre)
+                      toast.success("Productos eliminado")
+                    }
+                    }
                     style={{ marginLeft: "10px", color: "red" }}
                   >
                     🗑️ Eliminar todos

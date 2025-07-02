@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet';
 import { useCarrito } from '../context/CarritoContext';
 import FiltroProductos from "../components/FiltrarProductos";
 import Paginacion from "../components/Paginación";
+import { toast } from "react-toastify";
 
 
 const SeccionProductos = ({setProductos}) => {
@@ -80,7 +81,12 @@ const SeccionProductos = ({setProductos}) => {
                 <h3>{producto.nombre}</h3>
                 <p>${producto.precio}</p>
                 <div className="producto-boton">
-                  <button className="boton" onClick={() => agregarAlCarrito(producto)}>Agregar al carrito</button>
+                  <button className="boton" onClick={() => 
+                    {
+                      agregarAlCarrito(producto);
+                      toast.success("producto agregado")
+                    }}>Agregar al carrito
+                    </button>
                   <Link className="boton" to={`/productos/${producto.id}`}>Ver Más</Link>
                 </div>
               </div>

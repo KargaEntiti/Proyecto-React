@@ -3,11 +3,8 @@ function Header() {
   return (
     <header>
       <div>
-        <h1>
-          Mi Tienda Online
-        </h1>
+        <img src="https://i.imgur.com/AnIMNRE.png" alt="Gaby's Gifts" className="header-logo" />
       </div>
-      
     </header>
   );
 }

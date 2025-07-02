@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { useProducts } from "../context/ProductosContext";
 import { toast } from 'react-toastify';
+import "../style/Formulario.css"
 
 const FormulariosProducto = ({ productoAEditar, onFinish }) => {
   const [nombre, setNombre] = useState('');
   const [precio, setPrecio] = useState('');
   const [descripcion, setDescripcion] = useState('');
   const [errores, setErrores] = useState({});
-  const [mensaje, setMensaje] = useState('');
+  const [mensaje] = useState('');
   const [imagenURL, setImagenURL] = useState("");
   const [preview, setPreview] = useState("");
 
@@ -112,7 +113,7 @@ const FormulariosProducto = ({ productoAEditar, onFinish }) => {
         <textarea value={descripcion} onChange={(e) => setDescripcion(e.target.value)} />
         {errores.descripcion && <p style={{ color: "red" }}>{errores.descripcion}</p>}
       </div>
-            <div>
+      <div>
         <label>Imagen (URL):</label>
         <input
           type="text"

@@ -1,8 +1,14 @@
 header {
     padding: 10px;
     margin: 10px;
+    text-align: center;
 }
 
 h1 {
+    text-align: center;
+}
+
+.header-logo {
+    height: 500px;
     text-align: center;
 }
