@@ -1,0 +1,15 @@
+
+footer, h1, .footer-logo {
+  background-color: var(--c-05);
+  min-height: 80px;
+  color: white;
+  text-align: center;
+  padding: 20px; /* Altura visual */
+  width: 100%;   /* Asegura que ocupa todo el ancho */
+  display: flex;
+  align-items: center;
+}
+
+.footer-logo {
+    width: 10%;
+}

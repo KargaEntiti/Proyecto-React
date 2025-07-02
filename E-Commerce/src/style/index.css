@@ -53,15 +53,6 @@ main {
   text-align: center;
 }
 
-footer {
-  background-color: #333;
-  min-height: 80px;
-  color: white;
-  text-align: center;
-  padding: 20px; /* Altura visual */
-  width: 100%;   /* Asegura que ocupa todo el ancho */
-}
-
 html, body, #root, .app-container {
   height: 100%;
   margin: 0;

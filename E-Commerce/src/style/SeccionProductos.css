@@ -19,6 +19,7 @@
   padding: 12px;
   gap: 12px;
   align-items: center;
+  flex-direction: column;
 }
 
 .producto-info {
