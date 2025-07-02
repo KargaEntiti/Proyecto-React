@@ -1,7 +1,6 @@
 header {
     padding: 10px;
     margin: 10px;
-    text-align: center;
 }
 
 h1 {
@@ -12,3 +11,9 @@ h1 {
     height: 500px;
     text-align: center;
 }
+
+header div {
+    display: flex;
+    justify-content: space-between;
+}
+

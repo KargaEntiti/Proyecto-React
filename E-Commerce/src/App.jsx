@@ -42,7 +42,6 @@ function App() {
         <title>Inicio</title>
         <meta name='Inicio' content='Productos del E-Commerce'/>
         </Helmet>
-        <Sidebar />
         <Rutas
         carrito={carrito}
         setCarrito={setCarrito}
