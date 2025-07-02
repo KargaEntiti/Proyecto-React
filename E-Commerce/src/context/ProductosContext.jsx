@@ -36,7 +36,7 @@ const editarProducto = async (productoActualizado) => {
   };
 
 const eliminarProducto = async (id) => {
-  if (window.confirm('¿Estás seguro de eliminar este producto?')) {
+  
     try {
       await axios.delete(`${API_URL}/${id}`);
       setProductos(prev => prev.filter(p => p.id !== id));
@@ -44,7 +44,7 @@ const eliminarProducto = async (id) => {
       toast.error('❌ Error al eliminar producto');
       console.error('Error al eliminar producto:', error);
     }
-  }
+  
 };
 
 useEffect(() => {
