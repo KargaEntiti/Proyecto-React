@@ -21,7 +21,6 @@ const ListaProductos = () => {
           <button className="btn btn-outline-danger" onClick={() => eliminarProducto(p.id)}><FaTrash /> Eliminar</button>
         </div>
       ))}
-      <h2>{editando ? 'Editar Producto' : 'Agregar Nuevo Producto'}</h2>
       <FormularioProducto productoAEditar={editando} onFinish={() => setEditando(null)} />
     </div>
   );

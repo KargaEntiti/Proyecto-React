@@ -97,44 +97,47 @@ const FormulariosProducto = ({ productoAEditar, onFinish }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Nombre:</label>
-        <input value={nombre} onChange={(e) => setNombre(e.target.value)} />
-        {errores.nombre && <p style={{ color: "red" }}>{errores.nombre}</p>}
-      </div>
-      <div>
-        <label>Precio:</label>
-        <input value={precio} onChange={(e) => setPrecio(e.target.value)} type="number" />
-        {errores.precio && <p style={{ color: "red" }}>{errores.precio}</p>}
-      </div>
-      <div>
-        <label>Descripción:</label>
-        <textarea value={descripcion} onChange={(e) => setDescripcion(e.target.value)} />
-        {errores.descripcion && <p style={{ color: "red" }}>{errores.descripcion}</p>}
-      </div>
-      <div>
-        <label>Imagen (URL):</label>
-        <input
-          type="text"
-          placeholder="https://..."
-          value={imagenURL}
-          onChange={handleURLChange}
-        />
-      </div>
-      {preview && (
+    <div className="container-form">
+      <form onSubmit={handleSubmit}>
+        <h1>Agregar Nuevo Producto</h1>
         <div>
-          <p>Vista previa:</p>
-          <img
-            src={preview}
-            alt="Preview"
-            style={{ width: "150px", height: "auto", border: "1px solid #ccc" }}
+          <label>Nombre:</label>
+          <input value={nombre} onChange={(e) => setNombre(e.target.value)} />
+          {errores.nombre && <p style={{ color: "red" }}>{errores.nombre}</p>}
+        </div>
+        <div>
+          <label>Precio:</label>
+          <input value={precio} onChange={(e) => setPrecio(e.target.value)} type="number" />
+          {errores.precio && <p style={{ color: "red" }}>{errores.precio}</p>}
+        </div>
+        <div>
+          <label>Descripción:</label>
+          <textarea value={descripcion} onChange={(e) => setDescripcion(e.target.value)} />
+          {errores.descripcion && <p style={{ color: "red" }}>{errores.descripcion}</p>}
+        </div>
+        <div>
+          <label>Imagen (URL):</label>
+          <input
+            type="text"
+            placeholder="https://..."
+            value={imagenURL}
+            onChange={handleURLChange}
           />
         </div>
-      )}
-      <button className="boton" type="submit">{productoAEditar ? 'Editar' : 'Agregar'} Producto</button>
-      {mensaje && <p style={{ color: "green" }}>{mensaje}</p>}
-    </form>
+        {preview && (
+          <div>
+            <p>Vista previa:</p>
+            <img
+              src={preview}
+              alt="Preview"
+              style={{ width: "150px", height: "auto", border: "1px solid #ccc" }}
+            />
+          </div>
+        )}
+        <button className="boton" type="submit">{productoAEditar ? 'Editar' : 'Agregar'} Producto</button>
+        {mensaje && <p style={{ color: "green" }}>{mensaje}</p>}
+      </form>
+    </div>
   );
 };
 

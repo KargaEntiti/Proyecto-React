@@ -1,7 +1,11 @@
 form {
-    padding: 20px 50px;
-    text-align:left;
-    display: table-caption;
+ form {
+  width: 400px; /* o el ancho que quieras */
+  margin: 0 auto;
+  padding: 20px 50px;
+  text-align: left; /* esto alinea el texto dentro a la izquierda */
+  display: block; /* IMPORTANTE: no uses table-caption */
+}
 }
 
 form textarea,
@@ -16,3 +20,11 @@ form textarea {
     height: 100px;
 }
 
+.container-form {
+  display: grid;
+  place-items: center;
+}
+
+label {
+    display: block !important;
+}

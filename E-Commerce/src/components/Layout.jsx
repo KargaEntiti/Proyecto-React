@@ -7,7 +7,6 @@ function Layout({ children }) {
   return (
     <div className="app-container">
       <Header />
-      <Nav />
       <main>
         <Outlet />
         </main>
