@@ -8,6 +8,9 @@ form {
 }
 }
 
+form h1 {
+  background-color: var(--c-00);
+}
 form textarea,
 form input {
     height: 40px;

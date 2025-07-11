@@ -1,0 +1,17 @@
+.busqueda {
+    padding-left: 5px;
+    border-radius: 5px;
+    width: 100%;
+    border: 1px solid var(--c-05);
+    box-sizing: border-box;
+    background-color: var(--c-00);
+}
+
+.busqueda:hover {
+    background-color: var(--c-01);
+}
+
+.barra-busqueda {
+    margin: 1px;
+    padding: 0 20%;
+}

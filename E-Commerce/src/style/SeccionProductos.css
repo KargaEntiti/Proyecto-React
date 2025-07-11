@@ -1,18 +1,22 @@
 .producto-imagen {
-  width: 150px;
-  height: 150px;
+  width: 300px;
+  height: 300px;
+  margin-top: 5px;
   object-fit: cover;
   border-radius: 8px;
 }
 
 .producto-grid {
+    background-color: var(--c-00);
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px,15%));
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(400px,10%));
     gap: 16px;
     padding: 16px;
     
 }
 .producto-tarjetas {
+  background-color: var(--c-01);
   display: flex;
   border: 1px solid;
   border-radius: 8px;
@@ -27,6 +31,11 @@
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
+  align-items: baseline;
+}
+
+.producto-info p, h3 {
+  align-self: center;
 }
 .producto-precio {
     font-size: 16px;
@@ -48,5 +57,7 @@
 }
 
 .producto-boton .boton {
-  margin: -2px;
+  margin: 2px;
+  justify-content: center;
+  align-items: center;
 }

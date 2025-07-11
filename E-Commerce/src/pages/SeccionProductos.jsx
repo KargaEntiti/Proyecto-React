@@ -18,7 +18,7 @@ const SeccionProductos = ({setProductos}) => {
 
   const [busqueda, setBusqueda] = useState("");
   const [paginaActual, setPaginaActual] = useState(1);
-  const productosPorPagina = 6;
+  const productosPorPagina = 24;
 
   useEffect(() => {
     setPaginaActual(1);
