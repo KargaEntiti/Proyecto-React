@@ -12,9 +12,12 @@ const ListaProductos = () => {
   const [editando, setEditando] = useState(null);
 
   const [modalVisible, setModalVisible] = useState(false);
-const [productoAEliminar, setProductoAEliminar] = useState(null);
+  const [productoAEliminar, setProductoAEliminar] = useState(null);
 
-const handleEliminarClick = (producto) => {
+
+
+
+  const handleEliminarClick = (producto) => {
   setProductoAEliminar(producto);
   setModalVisible(true);
 };

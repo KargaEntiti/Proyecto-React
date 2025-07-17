@@ -4,25 +4,36 @@ import { toast } from 'react-toastify';
 import "../style/Formulario.css"
 
 const FormulariosProducto = ({ productoAEditar, onFinish }) => {
-  const [nombre, setNombre] = useState('');
-  const [precio, setPrecio] = useState('');
-  const [descripcion, setDescripcion] = useState('');
+  
+  const [nombre, setNombre] = useState(productoAEditar?.nombre || '');
+  const [precio, setPrecio] = useState(productoAEditar?.precio || '');
+  const [descripcion, setDescripcion] = useState(productoAEditar?.descripcion || '');
   const [errores, setErrores] = useState({});
   const [mensaje] = useState('');
-  const [imagenURL, setImagenURL] = useState("");
+  const [imagenURL, setImagenURL] = useState(productoAEditar?.categoria || '');
   const [preview, setPreview] = useState("");
+  const [categoria, setCategoria] = useState(productoAEditar?.categoria || '');
 
-  const { agregarProducto, editarProducto } = useProducts();
+  const { productos, agregarProducto, editarProducto } = useProducts();
 
+  const [nombreExistente, setNombreExistente] = useState(false);
+  
+  const categoriasExistentes = [...new Set(productos.map(p => p.categoria).filter(Boolean))];
+  const nombresExistentes = productos.map(p => p.nombre.toLowerCase());
+  
   useEffect(() => {
+    const yaExiste = nombresExistentes.includes(nombre.toLowerCase()) &&
+      nombre.toLowerCase() !== productoAEditar?.nombre?.toLowerCase();
+    setNombreExistente(yaExiste);
     if (productoAEditar) {
       setNombre(productoAEditar.nombre);
       setPrecio(productoAEditar.precio);
       setDescripcion(productoAEditar.descripcion);
       setImagenURL(productoAEditar.imagen)
       setPreview(productoAEditar.imagen);
+      setCategoria(productoAEditar.categoria)
     }
-  }, [productoAEditar]);
+  }, [nombre,nombresExistentes,productoAEditar]);
 
   const validar = () => {
     const errores = {};
@@ -31,6 +42,7 @@ const FormulariosProducto = ({ productoAEditar, onFinish }) => {
       errores.precio = 'El precio debe ser un número mayor a 0';
     if (!descripcion || descripcion.length < 10)
       errores.descripcion = 'Debe tener al menos 10 caracteres';
+    if (!categoria.trim()) errores.categoria = "Ingresar una categoria"
     return errores;
   };
 
@@ -60,6 +72,9 @@ const FormulariosProducto = ({ productoAEditar, onFinish }) => {
        toast.warn('⚠️ Corrige los errores del formulario');
       return;
     }
+    if (nombreExistente) {
+      toast.warn("Ese nombre ya existe.");
+    }
     
     // Determinar la URL final
     let imagenFinal = "";
@@ -76,6 +91,7 @@ const FormulariosProducto = ({ productoAEditar, onFinish }) => {
       nombre,
       precio,
       descripcion,
+      categoria,
       imagen: imagenURL,
     };
 
@@ -93,8 +109,11 @@ const FormulariosProducto = ({ productoAEditar, onFinish }) => {
     setDescripcion('');
     setImagenURL("");
     setPreview("");
+    setCategoria('')
     if (onFinish) onFinish(); // Para cerrar modal, etc.
   };
+
+  
 
   return (
     <div className="container-form">
@@ -104,6 +123,20 @@ const FormulariosProducto = ({ productoAEditar, onFinish }) => {
           <label>Nombre:</label>
           <input value={nombre} onChange={(e) => setNombre(e.target.value)} />
           {errores.nombre && <p style={{ color: "red" }}>{errores.nombre}</p>}
+        </div>
+        <div>
+          <label>Categoría:</label>
+            <input
+              list="categorias"
+              value={categoria}
+              onChange={e => setCategoria(e.target.value)}
+              placeholder="Escriba o seleccione una categoría"
+            />
+            <datalist id="categorias">
+              {categoriasExistentes.map((cat, i) => (
+                <option value={cat} key={i} />
+              ))}
+            </datalist>
         </div>
         <div>
           <label>Precio:</label>

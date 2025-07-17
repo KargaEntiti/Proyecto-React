@@ -5,6 +5,7 @@
     border: 1px solid var(--c-05);
     box-sizing: border-box;
     background-color: var(--c-00);
+    height: 50px;
 }
 
 .busqueda:hover {
@@ -12,6 +13,6 @@
 }
 
 .barra-busqueda {
-    margin: 1px;
     padding: 0 20%;
+    background-color: var(--c-00);
 }

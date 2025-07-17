@@ -14,6 +14,8 @@ const SeccionProductos = ({setProductos}) => {
   const [cargando, setCargando] = useState(true);
   const { agregarAlCarrito } = useCarrito();
 
+  const categorias = ["Todas", ...new Set(productosLocales.map(p => p.categoria || "Sin categoría"))];
+  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("Todas");
 
 
   const [busqueda, setBusqueda] = useState("");
@@ -39,10 +41,16 @@ const SeccionProductos = ({setProductos}) => {
     setPaginaActual(1); // reinicia a la primera página al cambiar filtro
   }, [busqueda]);
 
-  const productosFiltrados = productosLocales.filter((producto) =>
+  const productosFiltrados = productosLocales.filter((producto) => {
+    const coincideBusqueda =
     producto.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
     producto.categoria?.toLowerCase().includes(busqueda.toLowerCase())
-  );
+   
+    const coincideCategoria =
+    categoriaSeleccionada === "Todas" || producto.categoria === categoriaSeleccionada;
+
+    return coincideBusqueda && coincideCategoria;
+  });
 
   const totalPaginas = Math.ceil(productosFiltrados.length / productosPorPagina);
   const indiceUltimo = paginaActual * productosPorPagina;
@@ -68,7 +76,22 @@ const SeccionProductos = ({setProductos}) => {
           setPaginaActual={setPaginaActual}
         />
       </div>
+      
       <FiltroProductos busqueda={busqueda} setBusqueda={setBusqueda} />
+        <aside className="categorias">
+          <h3>Categorías</h3>
+          <ul>
+            {categorias.map((cat) => (
+              <li
+                key={cat}
+                onClick={() => setCategoriaSeleccionada(cat)}
+                className={cat === categoriaSeleccionada ? "activa" : ""}
+              >
+                {cat}
+              </li>
+            ))}
+          </ul>
+        </aside>
 
       <div className="producto-grid">
         {productosPaginados.length === 0 ? (
@@ -84,7 +107,7 @@ const SeccionProductos = ({setProductos}) => {
                   <button className="boton" onClick={() => 
                     {
                       agregarAlCarrito(producto);
-                      toast.success("producto agregado")
+                      toast.success("Producto agregado")
                     }}>Agregar al carrito
                     </button>
                   <Link className="boton" to={`/productos/${producto.id}`}>Ver Más</Link>

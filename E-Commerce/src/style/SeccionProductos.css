@@ -61,3 +61,11 @@
   justify-content: center;
   align-items: center;
 }
+
+.paginacion {
+  background-color: var(--c-00);
+}
+
+main {
+  background-color: var(--c-00);
+}
