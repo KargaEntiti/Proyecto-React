@@ -1,11 +1,17 @@
 /* Botón hamburguesa */
 .hamburguesa {
-  font-size: 30px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  margin: 10px;
-  display: flex;
+  font-size: 38px;
+  width: 30px;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4); /* fondo oscuro semitransparente */
+  z-index: 999; /* detrás del sidebar, pero delante del contenido */
 }
 
 /* Sidebar oculto */
@@ -75,8 +81,9 @@
 .sidebar nav ul li:hover a,
 .sidebar nav ul li:hover .boton  
 {
-  background-color: var(--c-05);
-  color:var(--c-00)
+  background-color: var(--c-04);
+  color:var(--c-00);
+  border: 5px solid var(--c-02);
 }
 
 .sidebar-header {
@@ -93,6 +100,8 @@
 .sidebar-logo {
   background-color: var(--c-05);
   height: 50px;
+  min-width: 50px;
+  min-height: 50px;
 }
 
 

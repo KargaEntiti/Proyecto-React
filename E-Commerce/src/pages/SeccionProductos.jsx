@@ -68,6 +68,7 @@ const SeccionProductos = ({setProductos}) => {
   return (
     <section>
       <Helmet><title>Inicio</title></Helmet>
+      <img src="https://i.imgur.com/AnIMNRE.png" alt="Gaby's Gifts" className="header-logo" />
       <h2>Nuestros Productos</h2>
       <div className="">
         <Paginacion 
@@ -76,8 +77,8 @@ const SeccionProductos = ({setProductos}) => {
           setPaginaActual={setPaginaActual}
         />
       </div>
-      
       <FiltroProductos busqueda={busqueda} setBusqueda={setBusqueda} />
+      <div className="seccion-productos">
         <aside className="categorias">
           <h3>Categorías</h3>
           <ul>
@@ -93,31 +94,31 @@ const SeccionProductos = ({setProductos}) => {
           </ul>
         </aside>
 
-      <div className="producto-grid">
-        {productosPaginados.length === 0 ? (
-          <p>No se encontraron productos.</p>
-        ) : (
-          productosPaginados.map((producto) => (
-            <div className="producto-tarjetas" key={producto.id}>
-              <img src={producto.imagen} alt={producto.nombre} className="producto-imagen" />
-              <div className="producto-info">
-                <h3>{producto.nombre}</h3>
-                <p>${producto.precio}</p>
-                <div className="producto-boton">
-                  <button className="boton" onClick={() => 
-                    {
-                      agregarAlCarrito(producto);
-                      toast.success("Producto agregado")
-                    }}>Agregar al carrito
-                    </button>
-                  <Link className="boton" to={`/productos/${producto.id}`}>Ver Más</Link>
+        <div className="producto-grid">
+          {productosPaginados.length === 0 ? (
+            <p>No se encontraron productos.</p>
+          ) : (
+            productosPaginados.map((producto) => (
+              <div className="producto-tarjetas" key={producto.id}>
+                <img src={producto.imagen} alt={producto.nombre} className="producto-imagen" />
+                <div className="producto-info">
+                  <h3>{producto.nombre}</h3>
+                  <p>${producto.precio}</p>
+                  <div className="producto-boton">
+                    <button className="boton" onClick={() => 
+                      {
+                        agregarAlCarrito(producto);
+                        toast.success("Producto agregado")
+                      }}>Agregar al carrito
+                      </button>
+                    <Link className="boton" to={`/productos/${producto.id}`}>Ver Más</Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))
-        )}
-      </div>
-
+            ))
+          )}
+        </div>
+      </div>  
       <Paginacion
         paginaActual={paginaActual}
         totalPaginas={totalPaginas}

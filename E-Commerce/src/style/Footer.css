@@ -2,14 +2,27 @@
 footer, h1, .footer-logo {
   background-color: var(--c-05);
   min-height: 80px;
-  color: white;
+  color: var(--c-01);
   text-align: center;
   padding: 20px; /* Altura visual */
   width: 100%;   /* Asegura que ocupa todo el ancho */
   display: flex;
   align-items: center;
+  margin-top: 10px;
+  -webkit-text-fill-color: var(--c-00)
 }
 
 .footer-logo {
     width: 10%;
+    min-width: 80px;
+}
+
+img, svg {
+ fill: var(--c-05);
+ width: 35px;
+ height: 100%; 
+}
+
+a:hover img, a:hover svg {
+  fill: var(--c-01)
 }

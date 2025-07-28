@@ -1,6 +1,6 @@
 .busqueda {
-    padding-left: 5px;
-    border-radius: 5px;
+    padding-left: 15px;
+    border-radius: 25px;
     width: 100%;
     border: 1px solid var(--c-05);
     box-sizing: border-box;

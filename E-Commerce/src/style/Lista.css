@@ -1,3 +1,41 @@
 p {
     text-align: center;
 }
+
+.editar, .eliminar, .eliminar svg, .editar svg {
+    margin: 5px;
+}
+
+.editar {
+    background-color: var(--c-01);
+    color: var(--c-05);
+}
+
+.editar svg {
+    fill: var(--c-05);
+}
+
+.editar:hover {
+    background-color: var(--c-03);
+    color: var(--c-01);
+}
+.editar:hover svg {
+    fill: var(--c-01);
+}
+
+.eliminar svg {
+    fill: var(--c-00);
+}
+
+.eliminar {
+    background-color: var(--c-05);
+    color: var(--c-01);
+}
+
+.eliminar:hover {
+    background-color: var(--c-02);
+    color: var(--c-00);
+}
+.eliminar:hover svg {
+    fill: var(--c-00);
+}

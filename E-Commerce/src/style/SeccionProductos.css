@@ -1,6 +1,5 @@
 .producto-imagen {
-  width: 300px;
-  height: 300px;
+  width: 100%;
   margin-top: 5px;
   object-fit: cover;
   border-radius: 8px;
@@ -9,11 +8,11 @@
 .producto-grid {
     background-color: var(--c-00);
     display: grid;
-    justify-content: center;
-    grid-template-columns: repeat(auto-fill, minmax(400px,10%));
-    gap: 16px;
+    justify-content: start;
     padding: 16px;
-    
+    grid-template-columns: repeat(auto-fit,minmax(200px,270px));
+    gap: 1.5rem;
+    flex-grow: 1; 
 }
 .producto-tarjetas {
   background-color: var(--c-01);
@@ -68,4 +67,45 @@
 
 main {
   background-color: var(--c-00);
+}
+
+.contenedor-productos {
+  display: flex;
+}
+
+.categorias {
+  width: 150px;
+  margin: 16px 0px;
+  border: 1px solid var(--c-05);
+  background-color: var(--c-01);
+  border-radius: 0px 5px 5px 0px;
+}
+
+.categorias h3 {
+  padding: 5px;
+}
+
+.categorias ul {
+  list-style: none;
+  padding: 0;
+}
+
+.categorias li {
+  cursor: pointer;
+  padding: 8px;
+  transition: background 0.3s;
+}
+
+.categorias li:hover {
+  background-color: var(--c-03);
+  font-weight: bold;
+}
+
+.categorias li.activa {
+  background-color: var(--c-05);
+  font-weight: bold;
+}
+
+.seccion-productos {
+  display: flex
 }

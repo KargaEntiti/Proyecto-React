@@ -5,7 +5,7 @@ function Footer() {
   return (
     <footer>
       <h1>
-        © 2025 Gaby's Gift
+        © 2025 Gaby's Gifts
       </h1>
       <img src="https://i.imgur.com/pxnct1B.png" alt="Gaby's Gifts" className="footer-logo" />
       <a href="https://www.instagram.com/gabysgifts.ok/" target="_blank" rel="noopener noreferrer">

@@ -1,0 +1,38 @@
+.container {
+    padding: 10px 0px;
+}
+
+.carrito-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 2fr; /* Ajusta según ancho deseado */
+  align-items: center;
+  gap: 8px;
+}
+
+.carrito-header {
+  font-weight: bold;
+  border-bottom: 1px solid var(--c-03);
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.carrito-item {
+  border-bottom: 1px solid var(--c-01);
+  padding: 0px 0;
+}
+.carrito-item p, .carrito-header p {
+  padding: 0px;
+  margin: 0px;
+}
+
+.acciones {
+  display: flex;
+  gap: 6px;
+  
+}
+
+.acciones .boton {
+  padding: 0px 0px; /* Botones más pequeños */
+  font-size: 14px;
+  margin: 0px 0px 0px 0px
+}

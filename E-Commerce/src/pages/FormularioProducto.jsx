@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useProducts } from "../context/ProductosContext";
 import { toast } from 'react-toastify';
 import "../style/Formulario.css"
 
-const FormulariosProducto = ({ productoAEditar, onFinish }) => {
+const FormularioProducto = ({ productoAEditar, onFinish }) => {
   
+  const formRef = useRef(null)
   const [nombre, setNombre] = useState(productoAEditar?.nombre || '');
   const [precio, setPrecio] = useState(productoAEditar?.precio || '');
   const [descripcion, setDescripcion] = useState(productoAEditar?.descripcion || '');
@@ -22,8 +23,8 @@ const FormulariosProducto = ({ productoAEditar, onFinish }) => {
   const nombresExistentes = productos.map(p => p.nombre.toLowerCase());
   
   useEffect(() => {
-    const yaExiste = nombresExistentes.includes(nombre.toLowerCase()) &&
-      nombre.toLowerCase() !== productoAEditar?.nombre?.toLowerCase();
+    formRef.current.scrollIntoView({ behavior: "smooth" });
+    const yaExiste = nombresExistentes.includes(nombre.toLowerCase()) && nombre.toLowerCase() !== productoAEditar?.nombre?.toLowerCase();
     setNombreExistente(yaExiste);
     if (productoAEditar) {
       setNombre(productoAEditar.nombre);
@@ -33,7 +34,7 @@ const FormulariosProducto = ({ productoAEditar, onFinish }) => {
       setPreview(productoAEditar.imagen);
       setCategoria(productoAEditar.categoria)
     }
-  }, [nombre,nombresExistentes,productoAEditar]);
+  }, [productoAEditar]);
 
   const validar = () => {
     const errores = {};
@@ -116,16 +117,24 @@ const FormulariosProducto = ({ productoAEditar, onFinish }) => {
   
 
   return (
-    <div className="container-form">
+    <div className="container-form" ref={formRef}>
       <form onSubmit={handleSubmit}>
         <h1>Agregar Nuevo Producto</h1>
         <div>
-          <label>Nombre:</label>
+          <label>
+            <h5>
+              Nombre:
+            </h5>
+          </label>
           <input value={nombre} onChange={(e) => setNombre(e.target.value)} />
           {errores.nombre && <p style={{ color: "red" }}>{errores.nombre}</p>}
         </div>
         <div>
-          <label>Categoría:</label>
+          <label>
+            <h5>
+              Categoría:
+            </h5>
+          </label>
             <input
               list="categorias"
               value={categoria}
@@ -139,17 +148,29 @@ const FormulariosProducto = ({ productoAEditar, onFinish }) => {
             </datalist>
         </div>
         <div>
-          <label>Precio:</label>
+          <label>
+            <h5>
+              Precio:
+            </h5>
+          </label>
           <input value={precio} onChange={(e) => setPrecio(e.target.value)} type="number" />
           {errores.precio && <p style={{ color: "red" }}>{errores.precio}</p>}
         </div>
         <div>
-          <label>Descripción:</label>
+          <label>
+            <h5>
+              Descripción:
+            </h5>
+          </label>
           <textarea value={descripcion} onChange={(e) => setDescripcion(e.target.value)} />
           {errores.descripcion && <p style={{ color: "red" }}>{errores.descripcion}</p>}
         </div>
         <div>
-          <label>Imagen (URL):</label>
+          <label>
+            <h5>
+              Imagen (URL):
+            </h5>
+          </label>
           <input
             type="text"
             placeholder="https://..."
@@ -174,4 +195,4 @@ const FormulariosProducto = ({ productoAEditar, onFinish }) => {
   );
 };
 
-export default FormulariosProducto;
+export default FormularioProducto;

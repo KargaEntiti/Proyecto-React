@@ -8,13 +8,15 @@ h1 {
 }
 
 .header-logo {
-    height: 500px;
+    width: -webkit-fill-available;
+    max-width: 500px;
     text-align: center;
 }
 
 header div {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+
 }
 
 a {
@@ -25,6 +27,7 @@ a {
     padding: 1%;
     background-color: var(--c-05);
     display: block;
+    margin-bottom: 10px;
 }
 
 .container-header-nav {

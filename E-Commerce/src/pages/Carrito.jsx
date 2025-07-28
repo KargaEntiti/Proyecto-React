@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Helmet } from "react-helmet";
 import { toast } from "react-toastify";
 import { useCarrito } from '../context/CarritoContext';
+import './../style/carrito.css'
 
 const Carrito = () => {
   const {
@@ -19,8 +20,14 @@ const Carrito = () => {
     0
   );
 
+  const formRef = useRef(null)
+
+  useEffect (() => {
+    formRef.current.scrollIntoView({ behavior: "smooth" });
+  })
+
   return (
-    <div>
+    <div className="container">
       <Helmet>
         <title>Carrito</title>
       </Helmet>
@@ -28,46 +35,75 @@ const Carrito = () => {
       <h2>🛒 Carrito</h2>
 
       {mostrarCarrito && (
-        <div>
+        <div className="carrito" ref={formRef}>
           {carrito.length === 0 ? (
             <p>El carrito está vacío</p>
           ) : (
-            <div>
-              {carrito.map((item) => (
-                <div key={item.nombre} style={{ marginBottom: "10px" }}>
-                  <strong>{item.nombre}</strong> - ${item.precio} × {item.cantidad} = $
-                  {(item.precio * item.cantidad).toFixed(2)}
-                  <button onClick={() => {
-                    agregarAlCarrito(item);
-                    toast.success("Producto agregado")
-                  }  
-                  } style={{ marginLeft: "10px" }}>
-                    +
-                  </button>
-                  <button onClick={() => 
-                  {
-                    disminuirCantidad(item.nombre);
-                    toast.success("Producto eliminado")
-                  }
-
-                  }>-</button>
-                  <button
-                    onClick={() => {
-                      eliminarProducto(item.nombre)
-                      toast.success("Productos eliminado")
-                    }
-                    }
-                    style={{ marginLeft: "10px", color: "red" }}
-                  >
-                    🗑️ Eliminar todos
-                  </button>
+            <>
+              <div className="carrito-header carrito-grid" style={{ marginBottom: "10px" }}>
+                <div className="grilla">
+                  <strong>Item</strong> 
                 </div>
-              ))}
+                <div className="grilla">
+                  <p>Precio</p>
+                </div>
+                <div className="grilla">
+                  <p>Cantidad</p>
+                </div><div className="grilla">
+                  <p>Total</p>
+                </div>
+                <div className="grilla">
+                  <strong>Operaciones</strong>
+                </div>
+              </div>
+
+              {carrito.map((item) => (
+                <div className="carrito-item carrito-grid" key={item.nombre} style={{ marginBottom: "10px" }}>
+                  <strong>{item.nombre}</strong>
+                  <p>${item.precio}</p>
+                  <p>×{item.cantidad}</p>
+                  <p>= ${(item.precio * item.cantidad).toFixed(2)}</p>
+                  <div className="acciones">
+                    <button 
+                      className="boton" 
+                      onClick={() => {
+                        agregarAlCarrito(item);
+                        toast.success("Producto agregado")
+                        }} style={{ marginLeft: "10px" }}
+                    >
+                      +
+                    </button>
+                    <button 
+                      className="boton" 
+                      onClick={() => 
+                      {
+                        disminuirCantidad(item.nombre);
+                        toast.success("Producto eliminado")
+                      }}
+                    >
+                      -
+                    </button>
+                    <button
+                      className="boton"
+                      onClick={() => {
+                        eliminarProducto(item.nombre)
+                        toast.success("Productos eliminado")
+                      }}
+                    >
+                      🗑️ Eliminar todos
+                    </button>
+                  </div>
+                </div>
+              ))}          
               <hr />
-              <p><strong>Total: ${totalGeneral.toFixed(2)}</strong></p>
-            </div>
+              <p>
+                <strong>Total: ${totalGeneral.toFixed(2)}</strong>
+              </p>
+          <button className="boton" onClick={vaciarCarrito}>
+            Vaciar Carrito
+          </button>
+          </>
           )}
-          <button className="boton" onClick={vaciarCarrito}>Vaciar Carrito</button>
         </div>
       )}
     </div>
