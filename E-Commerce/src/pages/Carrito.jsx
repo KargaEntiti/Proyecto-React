@@ -3,7 +3,9 @@ import { Helmet } from "react-helmet";
 import { toast } from "react-toastify";
 import { useCarrito } from '../context/CarritoContext';
 import './../style/carrito.css'
-
+import ModalConfirmacion from "../components/ModalConfirmacion";
+import QRWhatsapp from "../components/QrCarrito";
+QRWhatsapp
 const Carrito = () => {
   const {
     carrito,
@@ -14,6 +16,20 @@ const Carrito = () => {
   } = useCarrito();
 
   const [mostrarCarrito] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [productoAEliminar, setProductoAEliminar] = useState(null);
+  const [eliminarTodo, setEliminarTodo] = useState(false);
+
+  const abrirModalProducto = (producto) => {
+  setProductoAEliminar(producto);
+  setEliminarTodo(false);
+  setModalVisible(true);
+};
+
+const abrirModalTodo = () => {
+  setEliminarTodo(true);
+  setModalVisible(true);
+};
 
   const totalGeneral = carrito.reduce(
     (acc, item) => acc + item.precio * item.cantidad,
@@ -86,11 +102,10 @@ const Carrito = () => {
                     <button
                       className="boton"
                       onClick={() => {
-                        eliminarProducto(item.nombre)
-                        toast.success("Productos eliminado")
+                        abrirModalProducto(item)
                       }}
                     >
-                      🗑️ Eliminar todos
+                      🗑️
                     </button>
                   </div>
                 </div>
@@ -99,13 +114,40 @@ const Carrito = () => {
               <p>
                 <strong>Total: ${totalGeneral.toFixed(2)}</strong>
               </p>
-          <button className="boton" onClick={vaciarCarrito}>
+          <button className="boton" onClick={abrirModalTodo}>
             Vaciar Carrito
           </button>
           </>
           )}
         </div>
       )}
+      {modalVisible && (
+          <ModalConfirmacion
+              titulo={
+            eliminarTodo
+              ? "¿Estás seguro de eliminar los siguientes productos?"
+              : `¿Estás seguro de eliminar "${productoAEliminar?.nombre}"?`
+            }
+            lista={eliminarTodo ? carrito : []}
+
+            onConfirmar={() => {
+              if (eliminarTodo) {
+                vaciarCarrito();
+              } else if (productoAEliminar) {
+                eliminarProducto(productoAEliminar.nombre);
+              }
+              setModalVisible(false);
+              setProductoAEliminar(null);
+            }}
+            onCancelar={() => {
+              setModalVisible(false);
+              setProductoAEliminar(null);
+            }}
+          />
+        )}
+        {carrito.length > 0 && (
+          <QRWhatsapp carrito={carrito} total={totalGeneral} />
+        )}
     </div>
   );
 };

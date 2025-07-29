@@ -4,13 +4,15 @@
 
 .carrito-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 2fr; /* Ajusta según ancho deseado */
+  grid-template-columns: 2fr 1fr 1fr 2fr 1.5fr; /* Ajusta según ancho deseado */
   align-items: center;
   gap: 8px;
 }
 
 .carrito-header {
   font-weight: bold;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 2fr 1.5fr; /* Ajusta según ancho deseado */
   border-bottom: 1px solid var(--c-03);
   padding-bottom: 5px;
   margin-bottom: 10px;
@@ -28,11 +30,20 @@
 .acciones {
   display: flex;
   gap: 6px;
+  justify-content: center;
   
 }
 
 .acciones .boton {
   padding: 0px 0px; /* Botones más pequeños */
   font-size: 14px;
-  margin: 0px 0px 0px 0px
+  margin: 0px 0px 0px 0px;
+  max-height: 30px;
+  max-width: 35px;
+}
+
+.modal-contenido ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
 }
