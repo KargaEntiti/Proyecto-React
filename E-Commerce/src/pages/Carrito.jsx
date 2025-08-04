@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { Helmet } from "react-helmet";
 import { toast } from "react-toastify";
 import { useCarrito } from '../context/CarritoContext';
-import '../style/carrito.css'
+import '../style/Carrito.css'
 import ModalConfirmacion from "../components/ModalConfirmacion";
 import QRWhatsapp from "../components/QrCarrito";
 QRWhatsapp
