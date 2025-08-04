@@ -1,5 +1,5 @@
 import "../style/index.css"
-import "../style/footer.css"
+import "../style/Footer.css"
 import { FaInstagram } from "react-icons/fa";
 function Footer() {
   return (
